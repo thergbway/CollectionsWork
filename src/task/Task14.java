@@ -1,7 +1,5 @@
 package task;
 
-import sun.util.resources.LocaleNames_ja;
-
 import java.util.Random;
 
 public class Task14 extends Task {
@@ -98,9 +96,9 @@ public class Task14 extends Task {
 }
 
 class Graph{
+    private static final double PERCENTAGE_OF_RANDOM_EDGES = 0.4;//Рандомизация добавляет 40% от возможного числа ребер
     private final int size;
     private boolean[][] adjacencyMatrix;//матрица смежности
-    private static final double PERCENTAGE_OF_RANDOM_EDGES = 0.4;//Рандомизация добавляет 40% от возможного числа ребер
 
     public Graph(int size){
         if(size <= 0)
