@@ -1,5 +1,8 @@
 package task;
 
+import geometry.Line;
+import geometry.Point2D;
+
 import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
@@ -101,41 +104,5 @@ public class Task19 extends Task {
                 }
             }
         }).start();
-    }
-
-    private class Point2D {
-        public final int x;
-        public final int y;
-
-        public Point2D(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-    }
-
-    private class Line {
-        public final Point2D p1;
-        public final Point2D p2;
-
-        public Line(Point2D startPoint, Point2D endPoint) {
-            p1 = startPoint;
-            p2 = endPoint;
-        }
-
-        @Override
-        public String toString() {
-            StringBuilder sb = new StringBuilder();
-            sb.append("(");
-            sb.append(p1.x);
-            sb.append(", ");
-            sb.append(p1.y);
-            sb.append(") --- (");
-            sb.append(p2.x);
-            sb.append(", ");
-            sb.append(p2.y);
-            sb.append(")");
-
-            return sb.toString();
-        }
     }
 }
