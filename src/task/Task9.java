@@ -16,6 +16,7 @@ public class Task9 extends Task {
             public void run() {
                 appendText("Пожалуйста, введите строку\n");
                 String str = readLine();
+                appendText("Введено: " + str + "\n");
 
                 boolean isInputCorrect = true;
                 char[] chars = str.toCharArray();

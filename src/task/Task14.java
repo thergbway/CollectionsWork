@@ -37,9 +37,9 @@ public class Task14 extends Task {
                     indexOfFirstPoint = readInt() - 1;
                     isFirstTime = false;
                 }
+                appendText("Введено: " + indexOfFirstPoint + "\n");
 
                 appendText("Введите номер второй точки:\n");
-
                 isFirstTime = true;
                 int indexOfSecondPoint = -1;
                 while (indexOfSecondPoint < 0 || indexOfSecondPoint >= graphSize) {
@@ -48,6 +48,7 @@ public class Task14 extends Task {
                     indexOfSecondPoint = readInt() - 1;
                     isFirstTime = false;
                 }
+                appendText("Введено: " + indexOfSecondPoint + "\n");
 
                 //add edge
                 boolean isAdded = graph.addEdge(indexOfFirstPoint, indexOfSecondPoint);
@@ -59,8 +60,8 @@ public class Task14 extends Task {
 
 
                 appendText("\nУдаление ребра:\n");
-                appendText("Введите номер первой точки:\n");
 
+                appendText("Введите номер первой точки:\n");
                 isFirstTime = true;
                 indexOfFirstPoint = -1;
                 while (indexOfFirstPoint < 0 || indexOfFirstPoint >= graphSize) {
@@ -69,9 +70,9 @@ public class Task14 extends Task {
                     indexOfFirstPoint = readInt() - 1;
                     isFirstTime = false;
                 }
+                appendText("Введено: " + indexOfFirstPoint + "\n");
 
                 appendText("Введите номер второй точки:\n");
-
                 isFirstTime = true;
                 indexOfSecondPoint = -1;
                 while (indexOfSecondPoint < 0 || indexOfSecondPoint >= graphSize) {
@@ -80,8 +81,9 @@ public class Task14 extends Task {
                     indexOfSecondPoint = readInt() - 1;
                     isFirstTime = false;
                 }
+                appendText("Введено: " + indexOfSecondPoint + "\n");
 
-                //add edge
+                //after removing
                 isAdded = graph.removeEdge(indexOfFirstPoint, indexOfSecondPoint);
                 if (isAdded) {
                     appendText("После удаления ребра: \n");
@@ -91,114 +93,114 @@ public class Task14 extends Task {
             }
         }).start();
     }
-}
-
-/**
- * Класс, представляющий собой граф
- */
-class Graph {
-    private static final double PERCENTAGE_OF_RANDOM_EDGES = 0.4;//Рандомизация добавляет 40% от возможного числа ребер
-    private final int size;
-    private boolean[][] adjacencyMatrix;//матрица смежности
 
     /**
-     * Конструктор
-     *
-     * @param size количество точек в графе
+     * Класс, представляющий собой граф
      */
-    public Graph(int size) {
-        if (size <= 0)
-            throw new IllegalArgumentException("Size of Graph <= 0");
+    private class Graph {
+        private static final double PERCENTAGE_OF_RANDOM_EDGES = 0.4;//Рандомизация добавляет 40% от возможного числа ребер
+        private final int size;
+        private boolean[][] adjacencyMatrix;//матрица смежности
 
-        this.size = size;
-        adjacencyMatrix = new boolean[size][size];
-    }
+        /**
+         * Конструктор
+         *
+         * @param size количество точек в графе
+         */
+        public Graph(int size) {
+            if (size <= 0)
+                throw new IllegalArgumentException("Size of Graph <= 0");
 
-    /**
-     * Добавление ребра в граф
-     *
-     * @param indexOfFirstPoint  индекс первой точки
-     * @param indexOfSecondPoint индекс второй точки
-     * @return результат добавления
-     */
-    public boolean addEdge(int indexOfFirstPoint, int indexOfSecondPoint) {
-        if (indexOfFirstPoint < 0 || indexOfFirstPoint >= size
-                || indexOfSecondPoint < 0 || indexOfSecondPoint >= size)
-            throw new IllegalArgumentException("Illegal point coordinate");
-
-        if (adjacencyMatrix[indexOfFirstPoint][indexOfSecondPoint])
-            return false;
-        else {
-            adjacencyMatrix[indexOfFirstPoint][indexOfSecondPoint] = true;
-            adjacencyMatrix[indexOfSecondPoint][indexOfFirstPoint] = true;
+            this.size = size;
+            adjacencyMatrix = new boolean[size][size];
         }
-        return true;
-    }
 
-    /**
-     * Удаление ребра из графа
-     *
-     * @param indexOfFirstPoint  индекс первой точки
-     * @param indexOfSecondPoint индекс второй точки
-     * @return результат удаления
-     */
-    public boolean removeEdge(int indexOfFirstPoint, int indexOfSecondPoint) {
-        if (indexOfFirstPoint < 0 || indexOfFirstPoint >= size
-                || indexOfSecondPoint < 0 || indexOfSecondPoint >= size)
-            throw new IllegalArgumentException("Illegal point coordinate");
+        /**
+         * Добавление ребра в граф
+         *
+         * @param indexOfFirstPoint  индекс первой точки
+         * @param indexOfSecondPoint индекс второй точки
+         * @return результат добавления
+         */
+        public boolean addEdge(int indexOfFirstPoint, int indexOfSecondPoint) {
+            if (indexOfFirstPoint < 0 || indexOfFirstPoint >= size
+                    || indexOfSecondPoint < 0 || indexOfSecondPoint >= size)
+                throw new IllegalArgumentException("Illegal point coordinate");
 
-        if (!adjacencyMatrix[indexOfFirstPoint][indexOfSecondPoint])
-            return false;
-        else {
-            adjacencyMatrix[indexOfFirstPoint][indexOfSecondPoint] = false;
-            adjacencyMatrix[indexOfSecondPoint][indexOfFirstPoint] = false;
-        }
-        return true;
-    }
-
-    /**
-     * Заполнение графа случайными ребрами
-     */
-    public void randomize() {
-        int edgesToCreate = (int) ((size * size - size) / 2 * PERCENTAGE_OF_RANDOM_EDGES);
-        Random r = new Random();
-
-        for (int i = 0; i < edgesToCreate; i++) {
-            int indexOfFirstPoint = r.nextInt(size);
-            int indexOfSecondPoint = r.nextInt(size);
-
-            addEdge(indexOfFirstPoint, indexOfSecondPoint);
-        }
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 1; i < size + 1 + 1; i++) {
-            if (i == 1) {
-                sb.append("  X ");
-                continue;
+            if (adjacencyMatrix[indexOfFirstPoint][indexOfSecondPoint])
+                return false;
+            else {
+                adjacencyMatrix[indexOfFirstPoint][indexOfSecondPoint] = true;
+                adjacencyMatrix[indexOfSecondPoint][indexOfFirstPoint] = true;
             }
-
-            sb.append(String.format("%3d", i - 1) + " ");
+            return true;
         }
-        sb.append("\n");
 
-        for (int i = 0; i < size; i++) {
-            for (int j = 1; j < size + 1 + 1; j++) {
-                if (j == 1) {
-                    sb.append(String.format("%3d", i + 1) + " ");
+        /**
+         * Удаление ребра из графа
+         *
+         * @param indexOfFirstPoint  индекс первой точки
+         * @param indexOfSecondPoint индекс второй точки
+         * @return результат удаления
+         */
+        public boolean removeEdge(int indexOfFirstPoint, int indexOfSecondPoint) {
+            if (indexOfFirstPoint < 0 || indexOfFirstPoint >= size
+                    || indexOfSecondPoint < 0 || indexOfSecondPoint >= size)
+                throw new IllegalArgumentException("Illegal point coordinate");
+
+            if (!adjacencyMatrix[indexOfFirstPoint][indexOfSecondPoint])
+                return false;
+            else {
+                adjacencyMatrix[indexOfFirstPoint][indexOfSecondPoint] = false;
+                adjacencyMatrix[indexOfSecondPoint][indexOfFirstPoint] = false;
+            }
+            return true;
+        }
+
+        /**
+         * Заполнение графа случайными ребрами
+         */
+        public void randomize() {
+            int edgesToCreate = (int) ((size * size - size) / 2 * PERCENTAGE_OF_RANDOM_EDGES);
+            Random r = new Random();
+
+            for (int i = 0; i < edgesToCreate; i++) {
+                int indexOfFirstPoint = r.nextInt(size);
+                int indexOfSecondPoint = r.nextInt(size);
+
+                addEdge(indexOfFirstPoint, indexOfSecondPoint);
+            }
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 1; i < size + 1 + 1; i++) {
+                if (i == 1) {
+                    sb.append("  X ");
                     continue;
                 }
-                if (adjacencyMatrix[i][j - 1 - 1])
-                    sb.append(String.format("%3d", 1) + " ");
-                else
-                    sb.append(String.format("%3d", 0) + " ");
+
+                sb.append(String.format("%3d", i - 1) + " ");
             }
             sb.append("\n");
-        }
 
-        return sb.toString();
+            for (int i = 0; i < size; i++) {
+                for (int j = 1; j < size + 1 + 1; j++) {
+                    if (j == 1) {
+                        sb.append(String.format("%3d", i + 1) + " ");
+                        continue;
+                    }
+                    if (adjacencyMatrix[i][j - 1 - 1])
+                        sb.append(String.format("%3d", 1) + " ");
+                    else
+                        sb.append(String.format("%3d", 0) + " ");
+                }
+                sb.append("\n");
+            }
+
+            return sb.toString();
+        }
     }
 }

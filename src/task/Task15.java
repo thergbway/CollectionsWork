@@ -55,72 +55,72 @@ public class Task15 extends Task {
             }
         }).start();
     }
-}
-
-/**
- * Структура, хранящая в себе числа
- *
- * @param <E> тип хранимого числа
- */
-class NumbersHolder<E extends Number> {
-    List<E> list = new LinkedList<>();
 
     /**
-     * Добавляет число в хранилище
+     * Структура, хранящая в себе числа
      *
-     * @param number добавляемое число
+     * @param <E> тип хранимого числа
      */
-    public void addNumber(E number) {
-        list.add(number);
-    }
+    private class NumbersHolder<E extends Number> {
+        List<E> list = new LinkedList<>();
 
-    /**
-     * Удаляет первый найденный объект, который равен заданному числу, из хранилища
-     *
-     * @param number число для удаления
-     * @return успешно ли было произведено удаление
-     */
-    public boolean removeNumber(E number) {
-        return list.remove(number);
-    }
-
-    /**
-     * Поиск числа, наиболее близкого к заданному (т.е. модуль разницы минимален)
-     *
-     * @param number заданное число
-     * @return искомое число или null, если коллекция пуста
-     */
-    public E findClosest(E number) {
-        double minDifference = Double.MAX_VALUE;
-        int indexOfClosest = -1;
-
-        for (int i = 0; i < list.size(); i++) {
-            E e = list.get(i);
-            double difference = Math.abs(e.doubleValue() - number.doubleValue());
-
-            if (difference <= minDifference) {
-                minDifference = difference;
-                indexOfClosest = i;
-            }
+        /**
+         * Добавляет число в хранилище
+         *
+         * @param number добавляемое число
+         */
+        public void addNumber(E number) {
+            list.add(number);
         }
 
-        if (indexOfClosest == -1)
-            return null;
-        else
-            return list.get(indexOfClosest);
-    }
+        /**
+         * Удаляет первый найденный объект, который равен заданному числу, из хранилища
+         *
+         * @param number число для удаления
+         * @return успешно ли было произведено удаление
+         */
+        public boolean removeNumber(E number) {
+            return list.remove(number);
+        }
 
-    @Override
-    public String toString() {
-        return list.toString();
-    }
+        /**
+         * Поиск числа, наиболее близкого к заданному (т.е. модуль разницы минимален)
+         *
+         * @param number заданное число
+         * @return искомое число или null, если коллекция пуста
+         */
+        public E findClosest(E number) {
+            double minDifference = Double.MAX_VALUE;
+            int indexOfClosest = -1;
 
-    /**
-     * Вычисление размера структуры
-     *
-     * @return результат вычисления
-     */
-    public int size() {
-        return list.size();
+            for (int i = 0; i < list.size(); i++) {
+                E e = list.get(i);
+                double difference = Math.abs(e.doubleValue() - number.doubleValue());
+
+                if (difference <= minDifference) {
+                    minDifference = difference;
+                    indexOfClosest = i;
+                }
+            }
+
+            if (indexOfClosest == -1)
+                return null;
+            else
+                return list.get(indexOfClosest);
+        }
+
+        @Override
+        public String toString() {
+            return list.toString();
+        }
+
+        /**
+         * Вычисление размера структуры
+         *
+         * @return результат вычисления
+         */
+        public int size() {
+            return list.size();
+        }
     }
 }

@@ -38,7 +38,7 @@ public class Task5 extends Task {
                 }
                 appendText("Введено I \"" + listI + "\"\n");
 
-                appendText("Пожалуйста, введите результаты измерения тока - целые числа в строку через пробел\n");
+                appendText("Пожалуйста, введите результаты измерения напряжения - целые числа в строку через пробел\n");
                 List<Integer> listU = new LinkedList<Integer>();
 
                 isCorrectSet = false;

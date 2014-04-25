@@ -1,6 +1,9 @@
 package task;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
 
 public class Task21 extends Task {
     private static final String TASK_INFO = "Реализовать структуру \"черный ящик\", хранящую множество чисел и " +
@@ -27,7 +30,7 @@ public class Task21 extends Task {
                 int numToAdd = readInt();
                 appendText("Введено: " + numToAdd + "\n");
                 Random r = new Random();
-                BlackBox<Integer> blackBox = new BlackBox<Integer>(k - 1);
+                BlackBox blackBox = new BlackBox(k - 1);
                 for (int i = 0; i < numCount; i++) {
                     blackBox.add(r.nextInt(MAX_VALUE));
                 }
@@ -55,11 +58,9 @@ public class Task21 extends Task {
 
     /**
      * Структура, хранящая в себе числа
-     *
-     * @param <E> тип хранимых элементов
      */
-    private class BlackBox<E extends Number> {
-        List<E> numList = new LinkedList<>();
+    private class BlackBox {
+        List<Integer> numList = new LinkedList<>();
         int k;
 
         /**
@@ -76,19 +77,9 @@ public class Task21 extends Task {
          *
          * @param number элемент
          */
-        public void add(E number) {
+        public void add(Integer number) {
             numList.add(number);
-            Collections.sort(numList, new Comparator<E>() {
-                @Override
-                public int compare(E o1, E o2) {
-                    if (o1.doubleValue() == o2.doubleValue())
-                        return 0;
-                    if (o1.doubleValue() < o2.doubleValue())
-                        return -1;
-                    else
-                        return +1;
-                }
-            });
+            Collections.sort(numList);
         }
 
         /**
@@ -96,7 +87,7 @@ public class Task21 extends Task {
          *
          * @return k-ый элемент
          */
-        public E getKNumber() {
+        public Integer getKNumber() {
             if (k >= numList.size())
                 return null;
             else
