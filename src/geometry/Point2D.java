@@ -9,6 +9,10 @@ public class Point2D {
         this.y = y;
     }
 
+    public double lengthToPoint2D(Point2D p) {
+        return Math.sqrt((p.x - x) * (p.x - x) + (p.y - y) * (p.y - y));
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

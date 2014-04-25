@@ -130,6 +130,4 @@ public class Task17 extends Task {
             return "[" + Arrays.toString(points) + "]";
         }
     }
-
-
 }
