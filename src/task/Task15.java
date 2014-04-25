@@ -57,6 +57,11 @@ public class Task15 extends Task {
     }
 }
 
+/**
+ * Структура, хранящая в себе числа
+ *
+ * @param <E> тип хранимого числа
+ */
 class NumbersHolder<E extends Number> {
     List<E> list = new LinkedList<>();
 
@@ -110,6 +115,11 @@ class NumbersHolder<E extends Number> {
         return list.toString();
     }
 
+    /**
+     * Вычисление размера структуры
+     *
+     * @return результат вычисления
+     */
     public int size() {
         return list.size();
     }

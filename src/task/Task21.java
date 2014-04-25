@@ -53,14 +53,29 @@ public class Task21 extends Task {
         }).start();
     }
 
+    /**
+     * Структура, хранящая в себе числа
+     *
+     * @param <E> тип хранимых элементов
+     */
     private class BlackBox<E extends Number> {
         List<E> numList = new LinkedList<>();
         int k;
 
+        /**
+         * Конструктор
+         *
+         * @param k число к из задания
+         */
         public BlackBox(int k) {
             this.k = k;
         }
 
+        /**
+         * Добавить элемент в структуру
+         *
+         * @param number элемент
+         */
         public void add(E number) {
             numList.add(number);
             Collections.sort(numList, new Comparator<E>() {
@@ -76,6 +91,11 @@ public class Task21 extends Task {
             });
         }
 
+        /**
+         * Взять k-ый элемент из структуры
+         *
+         * @return k-ый элемент
+         */
         public E getKNumber() {
             if (k >= numList.size())
                 return null;

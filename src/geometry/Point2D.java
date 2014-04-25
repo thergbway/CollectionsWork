@@ -1,14 +1,29 @@
 package geometry;
 
+/**
+ * Класс, представляющий точку в 2D пространстве
+ */
 public class Point2D {
     public final int x;
     public final int y;
 
+    /**
+     * Конструктор
+     *
+     * @param x абсцисса точки
+     * @param y ордината точки
+     */
     public Point2D(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
+    /**
+     * Поиск расстояния до указанной точки
+     *
+     * @param p вторая точка
+     * @return найденное расстояние
+     */
     public double lengthToPoint2D(Point2D p) {
         return Math.sqrt((p.x - x) * (p.x - x) + (p.y - y) * (p.y - y));
     }

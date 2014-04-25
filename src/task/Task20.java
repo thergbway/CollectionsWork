@@ -83,6 +83,15 @@ public class Task20 extends Task {
         }).start();
     }
 
+    /**
+     * Состоит ли подматрица из одинаковых чисел
+     *
+     * @param matrix          матрица
+     * @param leftUpXIndex    левый верхний индекс Х подматрицы
+     * @param leftUpYIndex    левый верхний индекс Y подматрицы
+     * @param rightDownXIndex правый нижний индекс Х подматрицы
+     * @param rightDownYIndex правый нижний индекс Y подматрицы
+     */
     private boolean isMatrixHomogeneous(int[][] matrix,
                                         int leftUpXIndex, int leftUpYIndex,
                                         int rightDownXIndex, int rightDownYIndex) {
@@ -96,12 +105,23 @@ public class Task20 extends Task {
         return true;
     }
 
+    /**
+     * Хранит в себе идентификационные данные подматрицы
+     */
     private class MatrixDefinition {
         public int leftUpXIndex;
         public int leftUpYIndex;
         public int rightDownXIndex;
         public int rightDownYIndex;
 
+        /**
+         * Конструктор
+         *
+         * @param leftUpXIndex    левый верхний индекс Х подматрицы
+         * @param leftUpYIndex    левый верхний индекс Y подматрицы
+         * @param rightDownXIndex правый нижний индекс Х подматрицы
+         * @param rightDownYIndex правый нижний индекс Y подматрицы
+         */
         public MatrixDefinition(int leftUpXIndex, int leftUpYIndex, int rightDownXIndex, int rightDownYIndex) {
             this.leftUpXIndex = leftUpXIndex;
             this.leftUpYIndex = leftUpYIndex;
@@ -109,6 +129,11 @@ public class Task20 extends Task {
             this.rightDownYIndex = rightDownYIndex;
         }
 
+        /**
+         * Вычисление размера подматрицы
+         *
+         * @return вычисленный размер
+         */
         public int size() {
             return (rightDownXIndex - leftUpXIndex + 1) * (rightDownYIndex - leftUpYIndex + 1);
         }

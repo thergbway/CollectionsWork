@@ -43,6 +43,11 @@ public class Task12 extends Task {
         }).start();
     }
 
+    /**
+     * Выполнение указанных в задании действий
+     *
+     * @param listToProcess список для обработки
+     */
     private void modelTaskProcess(List<Integer> listToProcess) {
 
         boolean isRemoved = true;

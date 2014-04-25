@@ -1,9 +1,18 @@
 package geometry;
 
+/**
+ * Класс, представляющий из себя отрезок
+ */
 public class Line {
     public final Point2D p1;
     public final Point2D p2;
 
+    /**
+     * Конструктор
+     *
+     * @param startPoint начало отрезка
+     * @param endPoint   конец отрезка
+     */
     public Line(Point2D startPoint, Point2D endPoint) {
         p1 = startPoint;
         p2 = endPoint;
@@ -50,6 +59,12 @@ public class Line {
             return false;
     }
 
+    /**
+     * Лежат ли отрезки на параллельных прямых
+     *
+     * @param l второй отрезок
+     * @return результат проверки
+     */
     public boolean isParallel(Line l) {
         int x1 = p1.x;
         int y1 = p1.y;

@@ -117,17 +117,4 @@ public class Task17 extends Task {
             }
         }).start();
     }
-
-    private class ThreePoints2D {
-        public final Point2D[] points;
-
-        public ThreePoints2D(Point2D one, Point2D two, Point2D three) {
-            points = new Point2D[]{one, two, three};
-        }
-
-        @Override
-        public String toString() {
-            return "[" + Arrays.toString(points) + "]";
-        }
-    }
 }
